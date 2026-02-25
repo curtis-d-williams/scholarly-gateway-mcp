@@ -230,6 +230,14 @@ async def search_works(
         next_cursor=next_cursor,
         provider_status=provider_status,
     )
+
+    try:
+        sink = _intel()
+        if sink:
+            sink.record_event("TOOL_CALL", {"tool": "search_works", "query": query, "providers": active_providers})
+    except Exception:  # noqa: BLE001
+        pass
+
     return output.model_dump()
 
 

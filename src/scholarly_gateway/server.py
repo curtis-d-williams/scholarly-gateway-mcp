@@ -35,10 +35,31 @@ from scholarly_gateway.models import (
 )
 from scholarly_gateway.providers import arxiv as arxiv_provider
 from scholarly_gateway.providers import openalex as openalex_provider
+from scholarly_gateway.intel import IntelSink, get_intel_sink
 
 mcp = FastMCP("scholarly-gateway")
 
 init_db()
+
+# ---------------------------------------------------------------------------
+# Intel feature-flag hook (future insertion point — not called yet)
+# ---------------------------------------------------------------------------
+
+_intel_sink: Optional[IntelSink] = None
+_intel_initialized: bool = False
+
+
+def _intel() -> Optional[IntelSink]:
+    """Return the memoized IntelSink (or None when disabled/failed).
+
+    Not invoked anywhere yet; reserved for the intelligence layer.
+    """
+    global _intel_sink, _intel_initialized
+    if not _intel_initialized:
+        _intel_sink = get_intel_sink()
+        _intel_initialized = True
+    return _intel_sink
+
 
 # ---------------------------------------------------------------------------
 # Helpers

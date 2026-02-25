@@ -260,6 +260,12 @@ async def get_work(work_key: str) -> dict:
 
     if cached:
         md = render_work_detail(cached)
+        try:
+            sink = _intel()
+            if sink:
+                sink.record_event("TOOL_CALL", {"tool": "get_work", "work_key": work_key})
+        except Exception:  # noqa: BLE001
+            pass
         return GetWorkOutput(
             work=cached,
             markdown=md,
@@ -270,12 +276,24 @@ async def get_work(work_key: str) -> dict:
     fetched = await _fetch_from_db(work_key)
     if fetched:
         md = render_work_detail(fetched)
+        try:
+            sink = _intel()
+            if sink:
+                sink.record_event("TOOL_CALL", {"tool": "get_work", "work_key": work_key})
+        except Exception:  # noqa: BLE001
+            pass
         return GetWorkOutput(
             work=fetched,
             markdown=md,
             provider_status=provider_status,
         ).model_dump()
 
+    try:
+        sink = _intel()
+        if sink:
+            sink.record_event("TOOL_CALL", {"tool": "get_work", "work_key": work_key})
+    except Exception:  # noqa: BLE001
+        pass
     return GetWorkOutput(
         work=InternalWork(
             work_key=work_key,

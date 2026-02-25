@@ -1,0 +1,58 @@
+[
+  {
+    "id": "https://openalex.org/W3001000001",
+    "doi": "https://doi.org/10.9999/golden-test-cite-alpha",
+    "title": "Deep Reinforcement Learning with Double Q-learning",
+    "publication_year": 2016,
+    "publication_date": "2016-02-04",
+    "type": "journal-article",
+    "authorships": [
+      {"author": {"display_name": "Hado van Hasselt"}},
+      {"author": {"display_name": "Arthur Guez"}},
+      {"author": {"display_name": "David Silver"}}
+    ],
+    "abstract_inverted_index": {
+      "Double": [0],
+      "Q-learning": [1],
+      "reduces": [2],
+      "overestimation.": [3]
+    },
+    "primary_location": {
+      "source": {"display_name": "AAAI"},
+      "landing_page_url": "https://example.com/double-dqn",
+      "pdf_url": null
+    },
+    "best_oa_location": null,
+    "open_access": {"is_oa": false},
+    "cited_by_count": 8000,
+    "locations": []
+  },
+  {
+    "id": "https://openalex.org/W3001000002",
+    "doi": "https://doi.org/10.9999/golden-test-cite-beta",
+    "title": "Dueling Network Architectures for Deep Reinforcement Learning",
+    "publication_year": 2016,
+    "publication_date": "2016-06-19",
+    "type": "conference-paper",
+    "authorships": [
+      {"author": {"display_name": "Ziyu Wang"}},
+      {"author": {"display_name": "Tom Schaul"}}
+    ],
+    "abstract_inverted_index": {
+      "Dueling": [0],
+      "networks": [1],
+      "improve": [2],
+      "policy": [3],
+      "evaluation.": [4]
+    },
+    "primary_location": {
+      "source": {"display_name": "ICML 2016"},
+      "landing_page_url": "https://example.com/dueling-dqn",
+      "pdf_url": null
+    },
+    "best_oa_location": null,
+    "open_access": {"is_oa": false},
+    "cited_by_count": 6500,
+    "locations": []
+  }
+]

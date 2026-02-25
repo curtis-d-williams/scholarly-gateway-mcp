@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"cursor":{"anyOf":[{"type":"string"},{"type":"null"}],"default":null},"limit":{"default":10,"type":"integer"},"work_key":{"type":"string"}},"required":["work_key"],"type":"object"}

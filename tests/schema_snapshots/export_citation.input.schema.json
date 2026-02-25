@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"format":{"default":"bibtex","enum":["bibtex","ris","csl-json"],"type":"string"},"work_key":{"type":"string"}},"required":["work_key"],"type":"object"}

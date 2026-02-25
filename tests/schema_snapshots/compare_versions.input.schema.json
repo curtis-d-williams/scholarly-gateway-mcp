@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"work_key":{"type":"string"}},"required":["work_key"],"type":"object"}

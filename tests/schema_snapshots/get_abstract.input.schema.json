@@ -1,0 +1,1 @@
+{"additionalProperties":false,"properties":{"mode":{"default":"teaser","enum":["teaser","full"],"type":"string"},"work_key":{"type":"string"}},"required":["work_key"],"type":"object"}

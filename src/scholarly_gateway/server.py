@@ -640,5 +640,10 @@ async def compare_versions(work_key: str) -> dict:
 # Entrypoint
 # ---------------------------------------------------------------------------
 
-if __name__ == "__main__":
+def run() -> None:
+    """Run the MCP server."""
     mcp.run()
+
+
+if __name__ == "__main__":
+    run()

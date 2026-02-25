@@ -2,7 +2,7 @@
 T4 — Determinism Tests (same input twice, same output)
 
 Golden files live in tests/golden/<tool>/<case>.json.
-They are auto-created on first run; subsequent runs compare byte-exactly.
+They must be committed; tests fail if any golden is missing.
 
 No live network calls are made: provider functions are stubbed via monkeypatch.
 All timestamps are pinned via _now_iso monkeypatching so outputs are
@@ -40,21 +40,18 @@ def canonical(obj) -> str:
 # Golden file helpers
 # ---------------------------------------------------------------------------
 
-def _save_golden(tool_name: str, case_name: str, text: str) -> None:
-    path = GOLDEN_DIR / tool_name / f"{case_name}.json"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
-
-
 def _assert_matches_golden(tool_name: str, case_name: str, output: dict) -> None:
     """Compare output to committed golden (byte-equal canonical JSON).
 
-    Creates the golden file on first run so it can be committed.
+    Fails immediately if the golden file is missing — no auto-creation.
     """
     path = GOLDEN_DIR / tool_name / f"{case_name}.json"
+    assert path.exists(), (
+        f"Missing golden for {tool_name}/{case_name}. "
+        f"To (re)generate goldens, run: "
+        f"python -m pytest tests/test_tool_goldens.py"
+    )
     actual = canonical(output)
-    if not path.exists():
-        _save_golden(tool_name, case_name, actual)
     expected = path.read_text(encoding="utf-8")
     assert actual == expected, (
         f"Golden mismatch for {tool_name}/{case_name}.\n"

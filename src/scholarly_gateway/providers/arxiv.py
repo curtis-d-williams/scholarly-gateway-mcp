@@ -30,7 +30,7 @@ from scholarly_gateway.models import (
     WorkStatus,
 )
 
-_BASE_URL = "http://export.arxiv.org/api/query"
+_BASE_URL = "https://export.arxiv.org/api/query"
 _TIMEOUT = 10.0
 # arXiv: max_concurrency=1 with minimum inter-request interval
 _SEMAPHORE = asyncio.Semaphore(1)
@@ -201,7 +201,7 @@ async def _get(url: str, params: dict) -> tuple[str, ProviderStatus]:
             await asyncio.sleep(_MIN_INTERVAL - elapsed)
 
         try:
-            async with httpx.AsyncClient() as client:
+            async with httpx.AsyncClient(follow_redirects=True) as client:
                 resp = await client.get(url, params=params, timeout=_TIMEOUT)
         except httpx.TimeoutException:
             return "", ProviderStatus(status="timeout", message="arXiv request timed out")

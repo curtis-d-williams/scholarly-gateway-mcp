@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:arxiv="http://arxiv.org/schemas/atom"
+      xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <opensearch:itemsPerPage>1</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/1312.6114v10</id>
+    <updated>2022-12-10T00:00:00Z</updated>
+    <published>2013-12-20T18:00:00Z</published>
+    <title>Auto-Encoding Variational Bayes</title>
+    <summary>We introduce a stochastic variational inference and learning algorithm that scales to large datasets and, under some mild differentiability conditions, even works in the intractable case.</summary>
+    <author>
+      <name>Diederik P Kingma</name>
+    </author>
+    <author>
+      <name>Max Welling</name>
+    </author>
+    <arxiv:doi>10.48550/arXiv.1312.6114</arxiv:doi>
+    <arxiv:journal_ref>ICLR 2014</arxiv:journal_ref>
+    <arxiv:primary_category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <link href="http://arxiv.org/abs/1312.6114v10" rel="alternate" type="text/html"/>
+    <link href="http://arxiv.org/pdf/1312.6114v10" rel="related" title="pdf" type="application/pdf"/>
+  </entry>
+</feed>

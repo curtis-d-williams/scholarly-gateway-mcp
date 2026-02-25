@@ -1,0 +1,35 @@
+{
+  "id": "https://openalex.org/W2741809807",
+  "doi": "https://doi.org/10.1038/nature12373",
+  "title": "Human-level control through deep reinforcement learning",
+  "publication_year": 2015,
+  "publication_date": "2015-02-26",
+  "type": "journal-article",
+  "authorships": [
+    {"author": {"display_name": "Volodymyr Mnih"}},
+    {"author": {"display_name": "Koray Kavukcuoglu"}},
+    {"author": {"display_name": "David Silver"}}
+  ],
+  "abstract_inverted_index": {
+    "The": [0],
+    "theory": [1],
+    "of": [2],
+    "deep": [3],
+    "reinforcement": [4],
+    "learning.": [5]
+  },
+  "primary_location": {
+    "source": {"display_name": "Nature"},
+    "landing_page_url": "https://www.nature.com/articles/nature12373",
+    "pdf_url": null
+  },
+  "best_oa_location": {
+    "pdf_url": "https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf",
+    "landing_page_url": "https://www.nature.com/articles/nature12373"
+  },
+  "open_access": {
+    "is_oa": true
+  },
+  "cited_by_count": 22000,
+  "locations": []
+}

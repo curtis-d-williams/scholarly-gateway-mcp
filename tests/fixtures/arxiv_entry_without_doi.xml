@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:arxiv="http://arxiv.org/schemas/atom"
+      xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <opensearch:itemsPerPage>1</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/2101.12345v1</id>
+    <updated>2021-01-29T18:00:00Z</updated>
+    <published>2021-01-29T18:00:00Z</published>
+    <title>A Novel Approach to Graph Neural Networks</title>
+    <summary>We propose a novel graph neural network architecture for semi-supervised classification tasks.</summary>
+    <author>
+      <name>Alice Researcher</name>
+    </author>
+    <author>
+      <name>Charlie Developer</name>
+    </author>
+    <arxiv:primary_category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <link href="http://arxiv.org/abs/2101.12345v1" rel="alternate" type="text/html"/>
+    <link href="http://arxiv.org/pdf/2101.12345v1" rel="related" title="pdf" type="application/pdf"/>
+  </entry>
+</feed>

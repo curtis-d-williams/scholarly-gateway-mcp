@@ -1,0 +1,30 @@
+{
+  "id": "https://openalex.org/W9999999999",
+  "doi": null,
+  "title": "A Preprint Without DOI on Transformer Architectures",
+  "publication_year": 2023,
+  "publication_date": "2023-06-01",
+  "type": "preprint",
+  "authorships": [
+    {"author": {"display_name": "Jane Smith"}},
+    {"author": {"display_name": "Bob Jones"}}
+  ],
+  "abstract_inverted_index": {
+    "We": [0],
+    "present": [1],
+    "a": [2],
+    "new": [3],
+    "architecture.": [4]
+  },
+  "primary_location": {
+    "source": null,
+    "landing_page_url": null,
+    "pdf_url": null
+  },
+  "best_oa_location": null,
+  "open_access": {
+    "is_oa": false
+  },
+  "cited_by_count": 0,
+  "locations": []
+}

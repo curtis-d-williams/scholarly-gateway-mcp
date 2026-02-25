@@ -31,6 +31,18 @@ No other event types exist or will be added in Phase 1.
 
 ---
 
+## Phase 1 Freeze Statement
+
+**Freeze date:** 2026-02-25
+
+**Scope:** The intel ledger is audit/observability infrastructure only. `TOOL_CALL` is the sole event type and no additional event types will be added in Phase 1. The ledger is fail-open — any initialisation or write failure must not affect tool outputs. There are no production read paths; all `SELECT` access is confined to the test suite. No derived semantics are built from ledger data: no graph or citation edges, no ranking or scoring signals, no identity registry.
+
+**Enforcement:** The test suite covers idempotency (I1), canonicalization stability (I2), integrity (I3), fail-open behaviour (I4), and multi-tool emission coverage.
+
+**Phase 2 rule:** Any addition of read APIs, derived semantics, new event types, or schema changes requires an explicit human product decision and a new written contract or spec reviewed by the architect before any code is written. Do not implement Phase 2 features under this document.
+
+---
+
 ## Phase 1 Invariants
 
 ### I1 — Idempotency

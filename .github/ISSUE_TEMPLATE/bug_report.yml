@@ -1,0 +1,80 @@
+name: Bug Report (Structured)
+description: File a structured bug report for scholarly-gateway-mcp
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: scholarly-gateway-mcp version
+      placeholder: "e.g. 0.3.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: os_python
+    attributes:
+      label: OS + Python version
+      placeholder: |
+        OS: macOS 14.5
+        Python: 3.12.3
+    validations:
+      required: true
+
+  - type: input
+    id: mcp_client
+    attributes:
+      label: MCP client name + version
+      placeholder: "e.g. Claude Desktop 0.10.2"
+    validations:
+      required: true
+
+  - type: input
+    id: tool_name
+    attributes:
+      label: Tool name invoked
+      placeholder: "e.g. search_papers"
+    validations:
+      required: true
+
+  - type: textarea
+    id: json_payload
+    attributes:
+      label: Exact JSON payload sent
+      description: Paste the full JSON object passed to the tool.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: provider_status
+    attributes:
+      label: Full provider_status output
+      description: Paste the complete provider_status response.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: Describe what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      placeholder: Describe what actually happened.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs snippet
+      description: Optional — paste any relevant log output.
+      render: shell
+    validations:
+      required: false

@@ -8,6 +8,7 @@ from typing import Any, Literal, Optional
 from fastmcp import FastMCP
 
 from scholarly_gateway import providers
+from scholarly_gateway.storage import get_identifiers, init_db, touch_last_seen, upsert_lookup
 from scholarly_gateway.formatting import (
     render_citations_list,
     render_search_results,
@@ -36,6 +37,8 @@ from scholarly_gateway.providers import arxiv as arxiv_provider
 from scholarly_gateway.providers import openalex as openalex_provider
 
 mcp = FastMCP("scholarly-gateway")
+
+init_db()
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -71,6 +74,33 @@ _WORK_CACHE: dict[str, InternalWork] = {}
 def _cache_works(works: list[InternalWork]) -> None:
     for w in works:
         _WORK_CACHE[w.work_key] = w
+        try:
+            upsert_lookup(w)
+        except Exception:
+            pass
+
+
+async def _fetch_from_db(work_key: str) -> Optional[InternalWork]:
+    """Resolve a work via DB-stored identifiers and re-fetch from a provider."""
+    ids = get_identifiers(work_key)
+    if not ids:
+        return None
+
+    work = None
+    if ids.get("openalex_id"):
+        w, _ = await openalex_provider.fetch_work(ids["openalex_id"])
+        if w:
+            work = w
+
+    if not work and ids.get("arxiv_id_norm"):
+        w, _ = await arxiv_provider.fetch_work(ids["arxiv_id_norm"])
+        if w:
+            work = w
+
+    if work:
+        _cache_works([work])
+        touch_last_seen(work_key)
+    return work
 
 
 def _ok_status() -> ProviderStatus:
@@ -207,7 +237,16 @@ async def get_work(work_key: str) -> dict:
             provider_status=provider_status,
         ).model_dump()
 
-    # Not in cache — cannot reverse hash; return error
+    # Not in cache — try DB lookup + provider re-fetch
+    fetched = await _fetch_from_db(work_key)
+    if fetched:
+        md = render_work_detail(fetched)
+        return GetWorkOutput(
+            work=fetched,
+            markdown=md,
+            provider_status=provider_status,
+        ).model_dump()
+
     return GetWorkOutput(
         work=InternalWork(
             work_key=work_key,
@@ -239,6 +278,8 @@ async def get_abstract(
     mode="full": returns full abstract if available.
     """
     cached = _WORK_CACHE.get(work_key)
+    if not cached:
+        cached = await _fetch_from_db(work_key)
     if not cached:
         return GetAbstractOutput(
             work_key=work_key,
@@ -312,6 +353,8 @@ async def forward_citations(
     """
     limit = min(limit, 25)
     cached = _WORK_CACHE.get(work_key)
+    if not cached:
+        cached = await _fetch_from_db(work_key)
 
     oa_works: list[InternalWork] = []
     oa_status = ProviderStatus(status="not_supported")
@@ -371,6 +414,8 @@ async def backward_references(
     """
     limit = min(limit, 25)
     cached = _WORK_CACHE.get(work_key)
+    if not cached:
+        cached = await _fetch_from_db(work_key)
 
     oa_works: list[InternalWork] = []
     oa_status = ProviderStatus(status="not_supported")
@@ -531,6 +576,8 @@ async def compare_versions(work_key: str) -> dict:
     Returns version list and a diff summary in markdown.
     """
     cached = _WORK_CACHE.get(work_key)
+    if not cached:
+        cached = await _fetch_from_db(work_key)
 
     if not cached or not cached.identifiers.arxiv_id:
         no_versions = CompareVersionsOutput(

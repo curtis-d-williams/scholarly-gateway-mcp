@@ -11,6 +11,10 @@ A reusable MCP (Model Context Protocol) server that provides a deterministic, pr
 ## V1 Contract
 Authoritative spec: [docs/V1_CONTRACT.md](docs/V1_CONTRACT.md)
 
+## Governance
+- [CONTRIBUTING.md](CONTRIBUTING.md) — PR types, determinism rules, contract rule, and how to propose new features
+- [docs/GOVERNANCE.md](docs/GOVERNANCE.md) — authority model, change control, versioning doctrine, and release checklist
+
 ## Setup (dev)
 
     python3 -m venv .venv

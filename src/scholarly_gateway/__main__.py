@@ -5,7 +5,10 @@ from scholarly_gateway.server import run
 
 
 def main() -> None:
-    run()
+    try:
+        run()
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":

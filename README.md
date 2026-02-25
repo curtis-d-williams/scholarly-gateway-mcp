@@ -1,5 +1,7 @@
 # scholarly-gateway-mcp
 
+[![CI](https://github.com/curtis-d-williams/scholarly-gateway-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/curtis-d-williams/scholarly-gateway-mcp/actions/workflows/ci.yml)
+
 A reusable MCP (Model Context Protocol) server that provides a deterministic, provenance-aware gateway to scholarly publication sources. The V1 contract is frozen; behavior and tool schemas are stable and will not change without an explicit contract revision.
 
 ## Start here

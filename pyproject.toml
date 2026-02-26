@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scholarly-gateway-mcp"
-version = "0.1.3"
+version = "0.2.2"
 description = "A deterministic, reusable MCP substrate for scholarly publication retrieval."
 readme = "README.md"
 license = "MIT"
